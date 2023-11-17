@@ -28,7 +28,7 @@ const resolvers = {
   },
 
   // If we have field in type which does not return the basic type we can create resolvers for that.... like below
-  // It is not neccessary to have all the data in one place like in user table, for that we can have the id in user to refer that by querying the DB. 
+  // It is not neccessary to have all the data in one place like in user table, for that we can have the id in user to refer that by querying the DB.
   User: {
     favoriteMovies: () => {
       return _.filter(
@@ -36,6 +36,34 @@ const resolvers = {
         (movie) =>
           movie.yearOfPublication >= 2000 && movie.yearOfPublication <= 2010
       );
+    },
+  },
+
+  Mutation: {
+    createUser: (parent, args) => {
+      const user = args.input;
+      const lastId = UserList[UserList.length - 1].id;
+      user.id = lastId + 1;
+      UserList.push(user);
+      return user;
+    },
+    updateUserName: (parent, args) => {
+      // Every property will be in the form of string by default
+      const { id, newUserName } = args.input;
+      let updatedUser = null;
+      UserList.forEach((user) => {
+        if (user.id === Number(id)) {
+          user.username = newUserName;
+          updatedUser = user;
+        }
+      });
+      return updatedUser;
+    },
+
+    deleteUser: (parent, args) => {
+      const { id } = args;
+      _.remove(UserList, (user) => user.id === Number(id));
+      return null;
     },
   },
 };

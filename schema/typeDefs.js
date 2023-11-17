@@ -27,6 +27,24 @@ const typeDefs = gql`
     movie(name: String!): Movie!
   }
 
+  input CreateUserInput {
+    name: String!
+    username: String!
+    age: Int!
+    nationality: Nationality = BRAZIL
+  }
+
+  input UpdateUserNameInput {
+    id: ID!
+    newUserName: String!
+  }
+
+  type Mutation {
+    createUser(input: CreateUserInput!): User!
+    updateUserName(input: UpdateUserNameInput!): User
+    deleteUser(id: ID!): User
+  }
+
   enum Nationality {
     CANADA
     BRAZIL
