@@ -4,10 +4,11 @@ const _ = require("lodash");
 const resolvers = {
   Query: {
     // USER RESOLVERS
-    users: () => {
-      return UserList;
+    users: (parent, args, context, info) => {
+      if (UserList) return { users: UserList };
+      return { message: "There was an error" };
     },
-    user: (parent, args) => {
+    user: (parent, args, context, info) => {
       const id = args.id;
       const user = _.find(UserList, { id: Number(id) });
       return user;
@@ -58,6 +59,16 @@ const resolvers = {
     deleteUser: (parent, args) => {
       const id = args.id;
       _.remove(UserList, (user) => user.id === Number(id));
+      return null;
+    },
+  },
+
+  UsersResult: {
+    __resolveType(fieldsObj) {
+      // fieldsObj: stored all value that is present in union 
+      // UsersSuccessResult must be exactly match with the type defined.
+      if (fieldsObj.users) return "UsersSuccessResult";
+      if (fieldsObj.message) return "UsersErrorResult";
       return null;
     },
   },
