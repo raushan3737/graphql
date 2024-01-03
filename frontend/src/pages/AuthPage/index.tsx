@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
-import { Button, Stack, Typography, styled } from '@mui/material'
+import { Avatar, Button, Stack, Typography, styled } from '@mui/material'
 import { useAuth0 } from '@auth0/auth0-react'
-import { LOGIN_ERROR } from '../../utils/constants'
+import { APP_GREETING, LOGIN_ERROR } from '../../utils/constants'
 
 const Container = styled(Stack)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+})
+
+const Logo = styled(Avatar)({
+  width: '3%',
 })
 
 const AuthPage = () => {
@@ -38,6 +42,13 @@ const AuthPage = () => {
 
   return (
     <Container spacing={'1rem'}>
+      <Logo
+        src={
+          'https://e7.pngegg.com/pngimages/708/311/png-clipart-twitter-twitter-thumbnail.png'
+        }
+        alt="twitter-logo"
+      />
+      <Typography variant="h4">{APP_GREETING}</Typography>
       <Typography variant="h5">Login to the twitter</Typography>
       <Stack direction={'row'} spacing={'1rem'}>
         <Button variant="contained" onClick={handleLogin}>

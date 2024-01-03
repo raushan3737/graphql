@@ -3,7 +3,7 @@
     {
       "id": "1",
       "body": "Happy new year!",
-      "date": "2023-01-01T12:00:00Z",
+      "date": "2023-01-01T11:06:44.763Z",
       "authorId": "101",
       "stats": {
         "views": 100,
@@ -15,7 +15,7 @@
     {
       "id": "2",
       "body": "ChatGPT",
-      "date": "2023-01-02T14:30:00Z",
+      "date": "2023-01-02T18:12:02.379Z",
       "authorId": "102",
       "stats": {
         "views": 150,

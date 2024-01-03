@@ -101,7 +101,14 @@ export const deleteTweet = async (id) => {
 
 export const markTweetRead = async (id) => {
   try {
-    const markedTweetReadRes = await API.patch(`/tweets/${id}`, { read: true });
+    const tweet = await API.get(`/tweets/${id}`);
+
+    const newReadStatus = !tweet.data.read;
+
+    const markedTweetReadRes = await API.patch(`/tweets/${id}`, {
+      read: newReadStatus,
+    });
+
     return markedTweetReadRes.data;
   } catch (error) {
     console.error(TWEET_READ_ERROR, error.message);
