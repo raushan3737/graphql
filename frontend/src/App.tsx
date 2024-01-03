@@ -1,9 +1,10 @@
 import React from 'react'
+import UserFeedPage from './pages/UserFeed'
 
 export const App = () => {
   return (
     <>
-      <h1>Sample React Application</h1>
+      <UserFeedPage />
     </>
   )
 }
