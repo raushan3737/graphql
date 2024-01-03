@@ -24,8 +24,9 @@ import {
 
 export const resolvers = {
   Query: {
-    Tweets: async (_, { limit, skip, sort_field, sort_order }) => {
+    Tweets: async (_, { limit, skip, sort_field, sort_order }, context) => {
       try {
+        const { user } = context;
         const tweetsResponse = (
           await getTweets({ limit, skip, sort_field, sort_order })
         ).data;

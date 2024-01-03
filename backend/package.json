@@ -6,7 +6,8 @@
   "type": "module",
   "dependencies": {
     "apollo-server": "^3.13.0",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "axios": "^1.6.2",
