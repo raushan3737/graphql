@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import {
   DELETE_TWEET,
@@ -20,6 +21,12 @@ const useUserTweet = () => {
   const handleRefetchTweets = () => {
     refetchUserTweets()
   }
+
+  useEffect(() => {
+    setInterval(() => {
+      refetchUserTweets()
+    }, 4000)
+  })
 
   const handleDeleteTweet = async (tweetId: string) => {
     try {
